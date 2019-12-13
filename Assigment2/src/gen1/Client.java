@@ -84,7 +84,7 @@ public class Client {
 		return o;
     }
 
-    public static void main(String args[]) 
+   /* public static void main(String args[]) 
     {
     	System.out.println("**. Java Client Application - EE402 OOP Module, DCU");
     	if(args.length==1){
@@ -98,5 +98,5 @@ public class Client {
     		System.out.println("      or:  java Client hostname (e.g. java Client localhost)");
     	}    
     	System.out.println("**. End of Application.");
-    }
+    }*/
 }

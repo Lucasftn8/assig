@@ -49,6 +49,8 @@ public class Mwindow extends JFrame implements Runnable{
 	//--------------ACTION-----------//
 	private JMenuItem clean_item = new JMenuItem("Reset");	private JMenuItem export_item = new JMenuItem("Export");
 	private JMenuItem close_item = new JMenuItem("Leave");
+	private JMenuItem run_item= new JMenuItem("Run");
+	private JMenuItem pause_item= new JMenuItem("Pause");
 	private JMenuItem round_item = new JMenuItem("Rond");
 	
 	//-------COLOR------//
@@ -56,13 +58,12 @@ public class Mwindow extends JFrame implements Runnable{
 
 		//-----Custom ActioListener-----//
 	private RateListener slist = new RateListener();
-	
+	private ThreadListener tlist = new ThreadListener();
 	
 	//--------------TOOLBAR---------//
 	private JToolBar toolbar = new JToolBar();
 	private JButton rate_plus = new JButton();
 	private JButton rate_minus = new JButton();
-	private JButton run_item= new JButton();
 
 	
 	//--------Contextual Menu---------//
@@ -132,6 +133,9 @@ public class Mwindow extends JFrame implements Runnable{
 	public void initToolBar() {
 		rate_plus.addActionListener(slist);
 		rate_minus.addActionListener(slist);
+		run_item.addActionListener(tlist);
+		pause_item.addActionListener(tlist);
+		toolbar.add(pause_item);
 		toolbar.add(run_item);
 		
 		//	Rate tools	//
@@ -146,11 +150,6 @@ public class Mwindow extends JFrame implements Runnable{
 	}
 	public void ActionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals(run_item)) {
-			fred=new Thread(this);
-			client = new Client("169.254.120.199");//peut etre a changer
-			this.running=true;
-			this.paused=false;
-			this.fred.start();
 		}
 	}
 	public void run() {
@@ -267,6 +266,24 @@ public class Mwindow extends JFrame implements Runnable{
 		this.Graphpan.addPoint(new DataPackage((float)46.2 , "19:00"));
 		this.Graphpan.addPoint(new DataPackage((float)44.1 , "19:01"));
 	}
+	public void setup_thread() {
+		fred=new Thread(this);
+		client = new Client("169.254.120.199");//peut etre a changer
+		this.running=true;
+		this.paused=false;
+		this.fred.start();
+	}
+	class ThreadListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource().getClass().getName()=="javax.swing.JMenuItem") {
+				if(e.getSource()==run_item) {
+					System.out.println("Hallo j'ecoute!");
+					setup_thread();
+				}
+					
+			}
+		}
+	}
 	class RateListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			/*if(e.getSource().getClass().getName()=="javax.swing.JMenuItem") {
@@ -289,6 +306,9 @@ public class Mwindow extends JFrame implements Runnable{
 						pan.impSize(-1);
 			}*/
 		 }
+	}
+	public static void main(String[] args) {
+		Mwindow w=new Mwindow();
 	}
 }
 	
