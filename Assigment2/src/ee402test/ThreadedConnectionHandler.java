@@ -50,7 +50,7 @@ public class ThreadedConnectionHandler extends Thread
         
         // At this point there is a valid String object
         // invoke the appropriate function based on the command 
-        if (s.equalsIgnoreCase("GetDate")){ 
+        if (s.equalsIgnoreCase("GetData")){ 
             this.getData(); 
         }       
         else { 

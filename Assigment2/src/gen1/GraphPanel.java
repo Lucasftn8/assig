@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import gen1.Mwindow.DataPackage;
 
 public class GraphPanel extends JPanel{
 	private boolean erasing = false;

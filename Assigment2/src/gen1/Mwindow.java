@@ -26,9 +26,13 @@ import javax.swing.KeyStroke;
 
 import gen1.GraphPanel.VisualSetting;
 
-public class Mwindow extends JFrame{
+public class Mwindow extends JFrame implements Runnable{
 
 	private GraphPanel Graphpan = new GraphPanel();
+	private Thread fred = null;
+	private boolean running=false,paused=false;
+	private Client client = null;
+	private int delay=2500;
 	private Color GuiColor = Color.gray;
 	//-------Software Details-------//
 	private int color_num = 6;
@@ -43,8 +47,7 @@ public class Mwindow extends JFrame{
 	private JMenu Omenu=new JMenu("Option");
 	
 	//--------------ACTION-----------//
-	private JMenuItem clean_item = new JMenuItem("Reset");
-	private JMenuItem export_item = new JMenuItem("Export");
+	private JMenuItem clean_item = new JMenuItem("Reset");	private JMenuItem export_item = new JMenuItem("Export");
 	private JMenuItem close_item = new JMenuItem("Leave");
 	private JMenuItem round_item = new JMenuItem("Rond");
 	
@@ -59,6 +62,8 @@ public class Mwindow extends JFrame{
 	private JToolBar toolbar = new JToolBar();
 	private JButton rate_plus = new JButton();
 	private JButton rate_minus = new JButton();
+	private JButton run_item= new JButton();
+
 	
 	//--------Contextual Menu---------//
 	private JPopupMenu popbar = new JPopupMenu();
@@ -127,6 +132,7 @@ public class Mwindow extends JFrame{
 	public void initToolBar() {
 		rate_plus.addActionListener(slist);
 		rate_minus.addActionListener(slist);
+		toolbar.add(run_item);
 		
 		//	Rate tools	//
 		//toolbar.add(circle);
@@ -137,6 +143,31 @@ public class Mwindow extends JFrame{
 		toolbar.addSeparator();
 		
 		this.getContentPane().add(toolbar,BorderLayout.NORTH);
+	}
+	public void ActionPerformed(ActionEvent e) {
+		if(e.getActionCommand().equals(run_item)) {
+			fred=new Thread(this);
+			client = new Client("169.254.120.199");//peut etre a changer
+			this.running=true;
+			this.paused=false;
+			this.fred.start();
+		}
+	}
+	public void run() {
+		 while(running){
+			 System.out.println("Coucou je cours");
+             try{
+         		this.Graphpan.addPoint(client.getData());
+                     Thread.sleep(this.delay);
+                     synchronized(this){
+                             while (this.paused) wait();
+                     }
+             }
+             catch (InterruptedException e){
+                     System.out.println("Counter was Interrupted!");
+                     this.running = false;
+             }
+     }
 	}
 	class GUI_Option extends JDialog{
 		private VisualSetting t_set;
@@ -258,24 +289,6 @@ public class Mwindow extends JFrame{
 						pan.impSize(-1);
 			}*/
 		 }
-	}
-	
-	public class DataPackage{
-		private float t_temp;
-		private String  t_time;// value of reference
-		
-		public DataPackage(float _temp,String _time) {
-			this.t_temp=_temp;
-			this.t_time=_time;
-			//receive here the thread server value?
-		}
-		//GETTER
-		public float get_temp() {return t_temp;}
-		public String get_time() {return t_time;}
-	}
-	public static void main(String[] arg) {
-		Mwindow win = new Mwindow();
-		win.testgraph();
 	}
 }
 	

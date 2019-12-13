@@ -2,7 +2,6 @@ package gen1;
 
 import java.awt.Graphics;
 
-import gen1.Mwindow.DataPackage;
 
 public class Point {
 	private DataPackage t_data;

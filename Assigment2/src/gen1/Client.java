@@ -9,7 +9,7 @@ import java.io.*;
 
 public class Client {
 	
-	private static int portNumber = 5050;
+	private static int portNumber = 5051;
     private Socket socket = null;
     private ObjectOutputStream os = null;
     private ObjectInputStream is = null;
@@ -39,20 +39,22 @@ public class Client {
 		return true;
     }
 
-    private void getData() {
+    public DataPackage getData() {
     	//Modify to receive and convert into DataPackage
-    	String theDateCommand = "GetDate", theDateAndTime;
-    	System.out.println("01. -> Sending Command (" + theDateCommand + ") to the server...");
-    	this.send(theDateCommand);
+    	String theDataCommand = "GetData";
+    	DataPackage theData=null;
+    	System.out.println("01. -> Sending Command (" + theDataCommand + ") to the server...");
+    	this.send(theDataCommand);
     	try{
-    		theDateAndTime = (String) receive();
+    		theData = (DataPackage) receive();
     		System.out.println("05. <- The Server responded with: ");
-    		System.out.println("    <- " + theDateAndTime);
+    		System.out.println("    <- " + theData);
     	}
     	catch (Exception e){
     		System.out.println("XX. There was an invalid object sent back from the server");
     	}
     	System.out.println("06. -- Disconnected from Server.");
+    	return theData;
     }
 	
     // method to send a generic object.
