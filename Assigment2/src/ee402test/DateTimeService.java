@@ -22,6 +22,6 @@ public class DateTimeService
    public String getDateAndTime()
    {
 	 Date d = this.calendar.getTime();
-     return "The RaspBerry time is: " + d.toString();	
+     return "@ " + d.toString();	
    }	
 }

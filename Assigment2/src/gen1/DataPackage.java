@@ -6,7 +6,10 @@ public class DataPackage {
 		private String  t_time;// value of reference
 		
 		public DataPackage(String _data_str) {
-			String[] str_stmp=_data_str.split("|");
+			String[] str_stmp=_data_str.split("@",2);
+			for(String p : str_stmp) {
+				System.out.println(p);
+			}
 			this.t_temp=Integer.valueOf(str_stmp[0])/100;//to get in degres instead of milidegres
 			this.t_time=str_stmp[1];
 			//receive here the thread server value?
