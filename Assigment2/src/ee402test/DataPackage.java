@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class DataPackage {
-	   //Different from Client DataPackage
-	   private int t_temp;
+	   // Client DataPackage
+        private int t_temp;
 		private String  t_time;// value of reference
 		
 		public DataPackage() {}

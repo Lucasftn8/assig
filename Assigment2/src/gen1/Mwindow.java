@@ -243,29 +243,6 @@ public class Mwindow extends JFrame implements Runnable{
 		}
 	}
 	
-	public void testgraph() {
-		//Workig for a minimum temp of 38 degres and maximum 50
-		this.Graphpan.addPoint(new DataPackage((float)43.5 , "18:57"));
-		this.Graphpan.addPoint(new DataPackage((float)39.4 , "18:58"));
-		this.Graphpan.addPoint(new DataPackage((float)43.6 , "18:59"));
-		this.Graphpan.addPoint(new DataPackage((float)39.2 , "19:00"));
-		this.Graphpan.addPoint(new DataPackage((float)44.1 , "19:01"));
-		this.Graphpan.addPoint(new DataPackage((float)50 , "18:57"));
-		this.Graphpan.addPoint(new DataPackage((float)38.2 , "18:58"));
-		this.Graphpan.addPoint(new DataPackage((float)43.6 , "18:59"));
-		this.Graphpan.addPoint(new DataPackage((float)46.2 , "19:00"));
-		this.Graphpan.addPoint(new DataPackage((float)44.1 , "19:01"));
-		this.Graphpan.addPoint(new DataPackage((float)43.5 , "18:57"));
-		this.Graphpan.addPoint(new DataPackage((float)39.4 , "18:58"));
-		this.Graphpan.addPoint(new DataPackage((float)43.6 , "18:59"));
-		this.Graphpan.addPoint(new DataPackage((float)46.2 , "19:00"));
-		this.Graphpan.addPoint(new DataPackage((float)44.1 , "19:01"));
-		this.Graphpan.addPoint(new DataPackage((float)43.5 , "18:57"));
-		this.Graphpan.addPoint(new DataPackage((float)39.4 , "18:58"));
-		this.Graphpan.addPoint(new DataPackage((float)43.6 , "18:59"));
-		this.Graphpan.addPoint(new DataPackage((float)46.2 , "19:00"));
-		this.Graphpan.addPoint(new DataPackage((float)44.1 , "19:01"));
-	}
 	public void setup_thread() {
 		fred=new Thread(this);
 		client = new Client("10.216.61.94");//peut etre a changer
