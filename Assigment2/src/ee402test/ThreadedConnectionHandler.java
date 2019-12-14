@@ -72,6 +72,7 @@ public class ThreadedConnectionHandler extends Thread
         try {
             System.out.println("02. -> Sending (" + o +") to the client.");
             this.os.writeObject(o);
+            System.out.println("------ Object Wrote*----------"); //additionally added comment
             this.os.flush();
         } 
         catch (Exception e) {
