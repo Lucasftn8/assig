@@ -5,8 +5,8 @@ public class DataPackage {
 	   private int t_temp;
 		private String  t_time;// value of reference
 		
-		public DataPackage(int _temp,String _time) {
-			this.t_temp=_temp/100;//to get in degres instead of milidegres
+		public DataPackage(String _temp,String _time) {
+			this.t_temp=Integer.valueOf(_temp)/100;//to get in degres instead of milidegres
 			this.t_time=_time;
 			//receive here the thread server value?
 		}

@@ -6,8 +6,7 @@ import java.util.Scanner;
 
 public class DataPackage {
 	   // Client DataPackage
-        private int t_temp;
-		private String  t_time;// value of reference
+        private String t_temp,t_time;// value of reference
 		
 		public DataPackage() {}
 		public DataPackage getDataPackage() {
@@ -15,10 +14,9 @@ public class DataPackage {
 			try {
 				File file = new File("/sys/class/thermal/thermal_zone0/temp");
 				Scanner scan = new Scanner(file);
-				String data= scan.nextLine();
-				System.out.println(data);
+				t_temp= scan.nextLine();
+				System.out.println(t_temp);
 				scan.close();
-				t_temp=Integer.valueOf(data);
 			}
 			catch (FileNotFoundException e){
 				System.out.println("An error occurred.");
@@ -28,7 +26,4 @@ public class DataPackage {
 			t_time= datatime.getDateAndTime();
 			return this;
 		}
-		//GETTER
-		public int get_temp() {return t_temp;}
-		public String get_time() {return t_time;}
 }
