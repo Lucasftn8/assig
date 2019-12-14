@@ -32,7 +32,7 @@ public class Mwindow extends JFrame implements Runnable{
 	private Thread fred = null;
 	private boolean running=false,paused=false;
 	private Client client = null;
-	private int delay=2500;
+	private int delay=500;
 	private Color GuiColor = Color.gray;
 	//-------Software Details-------//
 	private int color_num = 6;
@@ -268,7 +268,7 @@ public class Mwindow extends JFrame implements Runnable{
 	}
 	public void setup_thread() {
 		fred=new Thread(this);
-		client = new Client("169.254.120.199");//peut etre a changer
+		client = new Client("10.216.61.94");//peut etre a changer
 		this.running=true;
 		this.paused=false;
 		this.fred.start();

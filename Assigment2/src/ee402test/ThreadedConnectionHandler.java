@@ -61,9 +61,8 @@ public class ThreadedConnectionHandler extends Thread
 
     // Use our custom DateTimeService Class to get the date and time
     private void getData() {	// use the date service to get the date
-    	DataPackage currentData = theData.getDataPackage();
         //String currentDateTimeText = theDateService.getDateAndTime();
-        this.send(currentData);
+        this.send(theData.getDataPackage());
     }
 
     // Send a generic object back to the client 
