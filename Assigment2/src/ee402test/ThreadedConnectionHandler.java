@@ -12,7 +12,7 @@ public class ThreadedConnectionHandler extends Thread
     private Socket clientSocket = null;				// Client socket object
     private ObjectInputStream is = null;			// Input stream
     private ObjectOutputStream os = null;			// Output stream
-    private DataPackage theData;
+    private DataPackage theData = new DataPackage();
     private DateTimeService theDateService;
     
 	// The constructor for the connection handler

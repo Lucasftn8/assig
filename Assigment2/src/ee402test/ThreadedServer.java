@@ -12,7 +12,6 @@ public class ThreadedServer
 	private static int portNumber = 5051;
 	
 	public static void main(String args[]) {
-		
 		boolean listening = true;
         ServerSocket serverSocket = null;
         
@@ -58,5 +57,5 @@ public class ThreadedServer
         {
             System.err.println("XX. Could not close server socket. " + e.getMessage());
         }
-    }
+	}
 }
