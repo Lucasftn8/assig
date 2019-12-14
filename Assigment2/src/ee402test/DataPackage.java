@@ -26,5 +26,5 @@ public class DataPackage {
 			t_time= datatime.getDateAndTime();
 			return this;
 		}
-		public String get_data_str() {return (t_temp+"|"+t_time);}
+		public String get_data_str() {return (t_temp+"@"+t_time);}
 }
