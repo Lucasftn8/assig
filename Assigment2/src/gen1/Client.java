@@ -42,18 +42,23 @@ public class Client {
     public DataPackage getData() {
     	//Modify to receive and convert into DataPackage
     	String theDataCommand = "GetData";
+    	String theDataReceived="";
     	DataPackage theData=null;
     	System.out.println("01. -> Sending Command (" + theDataCommand + ") to the server...");
     	this.send(theDataCommand);
     	try{
-    		theData = (DataPackage) receive();
+    		theDataReceived = (String)receive();
     		System.out.println("05. <- The Server responded with: ");
-    		System.out.println("    <- " + theData);
+    		System.out.println("    <- " + theDataReceived);
     	}
     	catch (Exception e){
     		System.out.println("XX. There was an invalid object sent back from the server");
     	}
+    	
     	System.out.println("06. -- Disconnected from Server.");
+    	System.out.println("07. -- Translating Response.");
+    	theData=new DataPackage(theDataReceived);
+    	System.out.println("08. -- Response Translated!.");
     	return theData;
     }
 	
